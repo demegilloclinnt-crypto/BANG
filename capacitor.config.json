@@ -1,0 +1,7 @@
+{
+  "appId": "com.mo2.monitoring",
+  "appName": "MO2 Monitoring",
+  "webDir": "www",
+  "server": { "androidScheme": "https", "cleartext": true },
+  "android": { "allowMixedContent": true }
+}

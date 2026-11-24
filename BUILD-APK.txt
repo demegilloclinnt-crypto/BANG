@@ -1,0 +1,30 @@
+BUILD THE MO2 ANDROID APK (no Android Studio needed)
+
+OPTION A - free, in the cloud (GitHub), about 5 minutes
+ 1. Make a free account at github.com and create a new repository (private is fine).
+ 2. Upload EVERYTHING in this folder (www, package.json, capacitor.config.json and the
+    hidden .github folder) to the repository. Easiest: GitHub Desktop, or "Add file > Upload files".
+ 3. Open the repository's "Actions" tab > "Build Android APK" > "Run workflow".
+ 4. When it turns green, open the run and download "MO2-apk" (a zip) at the bottom. Unzip it: app-debug.apk.
+ 5. Copy app-debug.apk to the phone > open it > allow "Install unknown apps" for your file manager/Chrome > Install.
+
+OPTION B - on your Windows PC
+ 1. Install Node.js LTS, JDK 17 and Android Studio (it installs the Android SDK).
+ 2. In this folder, open a terminal and run:
+      npm install
+      npx cap add android
+ 3. Open android\app\src\main\AndroidManifest.xml and change  <application  to
+      <application android:usesCleartextTraffic="true"
+ 4. Run:
+      npx cap sync android
+      cd android
+      gradlew assembleDebug
+ 5. The APK is at android\app\build\outputs\apk\debug\app-debug.apk
+
+USING THE APK
+ - First launch asks for the server address: type the address from the PC app's "Connect phone" window,
+   e.g. http://192.168.1.XX:3000 (use your PC's real address). The phone must be on the same Wi-Fi and the PC app running.
+ - After that it works offline and syncs when back on that Wi-Fi. Change the address later with the
+   "Change server address" link at the bottom of the status line.
+ - The page itself is inside the APK, so it needs no HTTPS and no Chrome flag.
+ - If the app is updated later, rebuild the APK with the new index.html in www.
